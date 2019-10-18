@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" ng-app="airlineCurr" >
+<head>
+    <meta charset="UTF-8">
+    <title>Airline currency</title>
+
+
+    <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
+    <script src="app.js"></script>
+
+</head>
+<body ng-controller="airlineCtrl">
+<h1>Airline Pricing Country display</h1>
+<form class="form-vertical" role="form" ng-submit="addRow()">
+    <div class="form-group">
+        <label class="col-md-2 control-label">Origin</label>
+        <div class="col-md-4">
+            <input type="text" class="form-control" name="origin"
+                   ng-model="origin" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Destination</label>
+        <div class="col-md-4">
+            <input type="text" class="form-control" name="destination"
+                   ng-model="destination" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">US Dollar</label>
+        <div class="col-md-4">
+            <input type="text" class="form-control" name="usprice"
+                   ng-model="usprice" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Argentina Peso</label>
+        <div class="col-md-4">
+            <input type="text" class="form-control" name="argprice"
+                   ng-model="argprice" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Spain Euro</label>
+        <div class="col-md-4">
+            <input type="text" class="form-control" name="esprice"
+                   ng-model="esprice" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">German Euro</label>
+        <div class="col-md-4">
+            <input type="text" class="form-control" name="gerprice"
+                   ng-model="gerprice" />
+        </div>
+    </div>
+    <div class="form-group">
+       <button ng-click="addRow()">Add Itinerary</button>
+    </div>
+</form>
+
+<table class="table" id="printable">
+    <tr>
+        <th>Origin
+        </th>
+        <th>Destination
+        </th>
+        <th>US Dollar
+        </th>
+        <th>Argentina Peso
+        </th>
+        <th>Spanish Euro
+        </th>
+        <th>German Euro
+        </th>
+    </tr>
+    <tr ng-repeat="itinerary in itineraries">
+        <td>{{itinerary.origin}}
+        </td>
+        <td>{{itinerary.destination}}
+        </td>
+        <td>{{itinerary.usprice | currency}}
+        </td>
+        <td>{{itinerary.argprice | currency: "$" : 0}}
+        </td>
+        <td>{{itinerary.esprice | currency: "€" : 0}}
+        </td>
+        <td>{{itinerary.gerprice | currency: '€' :0}}
+        </td>
+    </tr>
+</table>
+
+<div>
+    <button ng-click="exportTable()">Export</button>
+</div>
+
+</body>
+</html>
